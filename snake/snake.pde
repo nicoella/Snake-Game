@@ -14,22 +14,33 @@ boolean spawned = false;
 
 void setup() {
   size(800,500);
-  grid = new int[10][10];
-  grid[5][5]=1;
-  grid[5][6]=1;
-  grid[5][7]=1;
-  fX=fY=5;
-  snakeX.add(5);
-  snakeY.add(7);
-  snakeX.add(5);
-  snakeY.add(6);
-  snakeX.add(5);
-  snakeY.add(5);
   stroke(0);
+  reset();
   textAlign(CENTER);
   rectMode(CENTER);
   PFont font1 = loadFont("Monospaced-16.vlw");
   textFont(font1);
+}
+
+void reset() {
+    snakeX = new LinkedList<Integer>();
+    snakeY = new LinkedList<Integer>();
+    snakeX.add(5);
+    snakeY.add(7);
+    snakeX.add(5);
+    snakeY.add(6);
+    snakeX.add(5);
+    snakeY.add(5);
+    grid = new int[10][10];
+    grid[5][5]=1;
+    grid[5][6]=1;
+    grid[5][7]=1;
+    fX=fY=5;
+    dir = 1;
+    len = 1;
+    spawned = false;
+    timeS = 0;
+    timeA = 0;
 }
 
 void draw() {
@@ -136,15 +147,18 @@ void move() { //1: up, 2: right, 3: down, 4: left
         }
     } else {
         screen = 5;
+        temp = len;
     }
 }
 
+int temp;
 void gameOver() { //5
     background(255);
     fill(0);
     text("Game Over!",400,150);
-    text("Score: "+len,400,190);
+    text("Score: "+temp,400,190);
     text("Press any key to return to main menu.",400,220);
+    reset();
 }
 
 void spawn() { 
