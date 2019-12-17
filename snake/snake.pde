@@ -18,8 +18,6 @@ void setup() {
   reset();
   textAlign(CENTER);
   rectMode(CENTER);
-  PFont font1 = loadFont("Monospaced-16.vlw");
-  textFont(font1);
 }
 
 void reset() {
